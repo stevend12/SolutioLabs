@@ -1,3 +1,6 @@
+# Ignore Build directory if in same path as Source
+Build/*
+
 # Prerequisites
 *.d
 
