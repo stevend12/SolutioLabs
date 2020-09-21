@@ -7,18 +7,21 @@ file_name = '../Build/ct_hu.txt';
 
 % Read in data
 fid = fopen(file_name);
-C = textscan(fid, "%s,%f,%d,%d","delimiter",",");
+C = textscan(fid, "%s %f %f %d %d","delimiter",",");
 fclose(fid);
 
 names = C{1};
 density = C{2};
-hu_ave = (C{3} + C{4}) ./ 2;
+zeff = C{3};
+hu_ave = (C{4} + C{5}) ./ 2;
 
 % Sort based on density and HU
 [sort_density, density_ind] = sort(density);
+[sort_zeff, zeff_ind] = sort(zeff);
 [sort_hu, hu_ind] = sort(hu_ave);
 for n = 1:length(names)
   density_names{n} = names{density_ind(n)};
+  zeff_names{n} = names{zeff_ind(n)};
   hu_names{n} = names{hu_ind(n)};
 end
 
@@ -36,6 +39,16 @@ set(gca, 'ycolor', 'w')
 set(gcf, 'color', back_color)
 
 figure('position', [120 120 1000 800])
+bar(sort_zeff, 'c')
+ylabel('Z_{eff}')
+set(gca, 'xticklabel', zeff_names)
+set(gca, "fontsize", 20);
+set(gca, 'color', back_color)
+set(gca, 'xcolor', 'w')
+set(gca, 'ycolor', 'w')
+set(gcf, 'color', back_color)
+
+figure('position', [140 140 1000 800])
 bar(sort_hu, 'c')
 ylabel('HU')
 set(gca, 'xticklabel', hu_names)

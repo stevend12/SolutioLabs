@@ -89,7 +89,8 @@ int main(int argc, char *argv[])
   {
     materials.push_back(solutio::NistPad(folder, material_names[n]));
     if(n == 7) materials[n].ForceDensity(0.25);
-    std::cout << material_names[n] << ": " << materials[n].GetDensity() << '\n';
+    std::cout << material_names[n] << ": " << materials[n].GetDensity() << ", "
+      << materials[n].PowerLawEffectiveZ(3.0) << '\n';
   }
   std::cout << '\n';
 
@@ -125,7 +126,8 @@ int main(int argc, char *argv[])
   for(int n = 0; n < num_materials; n++)
   {
     fout << material_names[n] << "," << materials[n].GetDensity() << "," <<
-      ct_hu[n][0] << "," << ct_hu[n][1] << '\n';
+      materials[n].PowerLawEffectiveZ(3.0) << "," << ct_hu[n][0] << "," <<
+      ct_hu[n][1] << '\n';
   }
   fout.close();
 
