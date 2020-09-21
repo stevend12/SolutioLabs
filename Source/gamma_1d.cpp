@@ -74,7 +74,7 @@ int main()
   s.DoseCriteria = 0.03; // 3 %
   s.DistCriteria = 0.3;  // 3 mm
   s.ResampleRate = 0.01; // Resample 100x
-  s.Threshold = 0.1;     // 10 %
+  s.PassThreshold = 0.1;     // 10 %
 
   /////////////////////////////////////////////////////
   // Step 1: Create test and reference dose profiles //
